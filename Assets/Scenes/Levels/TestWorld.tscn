@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://brpmn3mrpp27g"]
+
+[ext_resource type="PackedScene" uid="uid://u2vda234v45w" path="res://Assets/Scenes/Characters/Player.tscn" id="1_viu0o"]
+[ext_resource type="Script" path="res://Assets/Scenes/Levels/CameraController.gd" id="1_ytgcx"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PayerBasicMovement.gd" id="2_smf41"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ibiu7"]
+sky_top_color = Color(0.376471, 0.435294, 0.713726, 1)
+sky_horizon_color = Color(0.622549, 0.655975, 0.744034, 1)
+ground_bottom_color = Color(0.156863, 0.176471, 0.227451, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_gwnjf"]
+sky_material = SubResource("ProceduralSkyMaterial_ibiu7")
+
+[sub_resource type="Environment" id="Environment_036oc"]
+background_mode = 2
+sky = SubResource("Sky_gwnjf")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64av0"]
+albedo_color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q4cyv"]
+size = Vector3(20, 1, 2)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_036oc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0749788, -0.349222, 0.934036, 0, 0.936672, 0.350207, -0.997185, 0.0262581, -0.0702305, 0, 0, 0)
+light_energy = 1.682
+shadow_enabled = true
+
+[node name="CameraController" type="Node3D" parent="."]
+script = ExtResource("1_ytgcx")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.886777, 0.462198, 0, -0.462198, 0.886777, 0, 3.27417, 2.99351)
+
+[node name="Player" parent="." instance=ExtResource("1_viu0o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39651, 0)
+script = ExtResource("2_smf41")
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="Platform" type="StaticBody3D" parent="Ground"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground/Platform"]
+size = Vector3(20, 1, 2)
+material = SubResource("StandardMaterial3D_64av0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Platform"]
+shape = SubResource("BoxShape3D_q4cyv")

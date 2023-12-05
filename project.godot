@@ -11,5 +11,15 @@ config_version=5
 [application]
 
 config/name="Project Hole"
-config/features=PackedStringArray("4.1", "Forward Plus")
+run/main_scene="res://Assets/Scenes/Levels/TestWorld.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/Art/": "red",
+"res://Assets/Scenes/": "blue",
+"res://Assets/Scripts/": "purple",
+"res://Assets/Story/": "green"
+}
