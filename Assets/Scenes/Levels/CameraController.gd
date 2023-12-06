@@ -16,8 +16,8 @@ func _process(delta):
 	$Camera3D.look_at(player.get_node("LookAt").global_position)
 	pass
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		var tempRotation = rotation.x - event.relative.y / 1000 * sensitivity
-		tempRotation = clamp(tempRotation, 0, .30)
-		rotation.x = tempRotation
+#func _input(event):
+	#if event is InputEventMouseMotion:
+		#var tempRotation = rotation.x - event.relative.y / 1000 * sensitivity
+		#tempRotation = clamp(tempRotation, 0, .30)
+		#rotation.x = tempRotation

@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://brpmn3mrpp27g"]
+[gd_scene load_steps=8 format=3 uid="uid://brpmn3mrpp27g"]
 
 [ext_resource type="PackedScene" uid="uid://u2vda234v45w" path="res://Assets/Scenes/Characters/Player.tscn" id="1_viu0o"]
 [ext_resource type="Script" path="res://Assets/Scenes/Levels/CameraController.gd" id="1_ytgcx"]
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PayerBasicMovement.gd" id="2_smf41"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ibiu7"]
 sky_top_color = Color(0.376471, 0.435294, 0.713726, 1)
@@ -39,11 +38,10 @@ shadow_enabled = true
 script = ExtResource("1_ytgcx")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 0.886777, 0.462198, 0, -0.462198, 0.886777, 0, 3.27417, 2.99351)
+transform = Transform3D(1, 0, 0, 0, 0.999648, 0.0265438, 0, -0.0265438, 0.999648, 0, 2.0125, 2.99351)
 
 [node name="Player" parent="." instance=ExtResource("1_viu0o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39651, 0)
-script = ExtResource("2_smf41")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Ground" type="Node3D" parent="."]
 
