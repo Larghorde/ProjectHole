@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://brpmn3mrpp27g"]
+[gd_scene load_steps=7 format=3 uid="uid://brpmn3mrpp27g"]
 
 [ext_resource type="PackedScene" uid="uid://u2vda234v45w" path="res://Assets/Scenes/Characters/Player.tscn" id="1_viu0o"]
 [ext_resource type="Script" path="res://Assets/Scenes/Levels/CameraController.gd" id="1_ytgcx"]
+[ext_resource type="MeshLibrary" uid="uid://c2u75qyy0d0fj" path="res://Assets/MeshLib/TestZoneTiles.tres" id="3_xttnm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ibiu7"]
 sky_top_color = Color(0.376471, 0.435294, 0.713726, 1)
@@ -17,12 +18,6 @@ background_mode = 2
 sky = SubResource("Sky_gwnjf")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64av0"]
-albedo_color = Color(0.392157, 0.392157, 0.392157, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q4cyv"]
-size = Vector3(20, 1, 2)
 
 [node name="World" type="Node3D"]
 
@@ -41,15 +36,12 @@ script = ExtResource("1_ytgcx")
 transform = Transform3D(1, 0, 0, 0, 0.999648, 0.0265438, 0, -0.0265438, 0.999648, 0, 2.0125, 2.99351)
 
 [node name="Player" parent="." instance=ExtResource("1_viu0o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00978184, 0)
 
-[node name="Ground" type="Node3D" parent="."]
-
-[node name="Platform" type="StaticBody3D" parent="Ground"]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Ground/Platform"]
-size = Vector3(20, 1, 2)
-material = SubResource("StandardMaterial3D_64av0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Platform"]
-shape = SubResource("BoxShape3D_q4cyv")
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("3_xttnm")
+cell_size = Vector3(1, 1, 1)
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(-1, 0, 1179649, -65536, 0, 1179649, -65535, 0, 1179649, -65534, 0, 1179649, -65533, 0, 1179649, -65532, 0, 1179649, -2, 0, 1179649, -3, 0, 1179649, -4, 0, 1179649, 65532, 0, 1179649, 131067, 0, 1179649, 131066, 0, 1179649, 196602, 0, 1179649, 196601, 0, 1179649, 196600, 0, 1179649, 262136, 0, 1179649, 262135, 0, 1179649, 262134, 0, 1179649, 262133, 0, 1179649, 262132, 0, 1179649, 262131, 0, 1179649, 262130, 0, 1179649, 262129, 0, 1179649, 131075, 0, 1179649, 131076, 0, 1179649, 131077, 0, 1179649, 131078, 0, 1179649, 131079, 0, 1179649, 131080, 0, 1179649, 131081, 0, 1179649, 65543, 0, 1179649, 65544, 0, 1179649, 8, 0, 1179649, 9, 0, 1179649, 65545, 0, 1179649, 196616, 0, 1179649, 196617, 0, 1179649, 65531, 0, 1179649, 65530, 0, 1179649, -6, 0, 1179649, -5, 0, 1179649, -7, 0, 1179649, -8, 0, 1179649, 65528, 0, 1179649, 131064, 0, 1179649, 131065, 0, 1179649, 65529, 0, 1179649, 131063, 0, 1179649, 196599, 0, 1179649, 196598, 0, 1179649, 196597, 0, 1179649, 196596, 0, 1179649, 196595, 0, 1179649, 196594, 0, 1179649, 196593, 0, 1179649)
+}
