@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 6.5
+@export var SPEED = 5.0
+@export var JUMP_VELOCITY = 6.5
 @export var turn_speed = 10
 var  facing_right:bool = false
 
