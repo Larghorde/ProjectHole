@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
 
-@export var SPEED = 5.0
-@export var JUMP_VELOCITY = 6.5
+@export var defaultSpeed:float = 5.0
+@export var runMultiplier:float = 2.0
+@export var JUMP_VELOCITY:float = 6.5
 @export var turn_speed = 10
-var  facing_right:bool = false
+var speed = defaultSpeed
+var isRunning:bool = false
 
 @onready var axis = Vector3.ZERO 
 
@@ -27,16 +29,23 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	axis.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	var direction = (transform.basis * Vector3(axis.x, 0, 0)).normalized()
+	if Input.is_action_pressed("run"):
+		speed = defaultSpeed * runMultiplier
+		isRunning = true
+	else:
+		speed = defaultSpeed
+		isRunning = false
 	if direction:
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * speed
 		$TestPlayerV2.rotation.y = lerp_angle($TestPlayerV2.rotation.y, atan2(direction.x, direction.z), delta * turn_speed)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	$AnimationTree.set("parameters/conditions/idle", axis.x == 0 && is_on_floor())
-	$AnimationTree.set("parameters/conditions/walk", axis.x != 0 && is_on_floor())
+	$AnimationTree.set("parameters/conditions/walk", !isRunning && axis.x != 0 && is_on_floor())
 	$AnimationTree.set("parameters/conditions/falling", !is_on_floor())
 	$AnimationTree.set("parameters/conditions/landed", is_on_floor())
-	$AnimationTree.set("parameters/conditions/jump",  Input.is_action_just_pressed("ui_accept") && is_on_floor())
+	$AnimationTree.set("parameters/conditions/jump",  Input.is_action_just_pressed("jump") && is_on_floor())
+	$AnimationTree.set("parameters/conditions/run",  isRunning && axis.x != 0 && is_on_floor())
 
 	move_and_slide()
