@@ -48,6 +48,10 @@ fov = 100.0
 
 [node name="Player" parent="." instance=ExtResource("1_viu0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00978184, 0)
+defaultSpeed = null
+runMultiplier = null
+jumpVelocity = null
+turnSpeed = null
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_xttnm")

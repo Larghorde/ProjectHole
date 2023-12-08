@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://u2vda234v45w"]
+[gd_scene load_steps=31 format=3 uid="uid://u2vda234v45w"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerController.gd" id="1_bctsq"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerBasicMovement.gd" id="1_p1r60"]
 [ext_resource type="PackedScene" uid="uid://bricvdqkrf3ol" path="res://Assets/Art/Models/3D Models/Player/TestPlayerV2.glb" id="1_tiqv5"]
+[ext_resource type="Script" path="res://AnimationController.gd" id="2_vbapl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c7b2y"]
 height = 1.7
@@ -4985,10 +4986,19 @@ states/run/position = Vector2(157, -109.514)
 states/walk/node = SubResource("AnimationNodeAnimation_5sn3w")
 states/walk/position = Vector2(406, -16)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0yrgt"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_e31xt"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8k4ym"), "walk", "falling_idle", SubResource("AnimationNodeStateMachineTransition_bb723"), "idle", "falling_idle", SubResource("AnimationNodeStateMachineTransition_8dbit"), "falling_idle", "walk", SubResource("AnimationNodeStateMachineTransition_l5o88"), "falling_idle", "idle", SubResource("AnimationNodeStateMachineTransition_gs6lg"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_brhan"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jvcll"), "run", "falling_idle", SubResource("AnimationNodeStateMachineTransition_okk1n"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_bm8tt"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_8vca4"), "falling_idle", "run", SubResource("AnimationNodeStateMachineTransition_sxanl")]
-graph_offset = Vector2(-112, -55.9331)
+graph_offset = Vector2(-98, -179.514)
 
 [node name="Character" type="CharacterBody3D" groups=["Player"]]
-script = ExtResource("1_bctsq")
+script = ExtResource("1_p1r60")
+defaultSpeed = null
+runMultiplier = null
+jumpVelocity = null
+turnSpeed = null
+
+[node name="AnimationController" type="Node" parent="."]
+script = ExtResource("2_vbapl")
+
+[node name="Scripts" type="Node" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.865882, 0)
